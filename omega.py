@@ -4,6 +4,7 @@ import pandas as pd
 rm = 500
 o = 0.25
 ps = 0.0636305
+ad = 0.4
 
 # declaring vectors
 
@@ -74,16 +75,16 @@ for i in range(len(s)):
 Omat = Dmat-Mmat
 Tmat = Mmat - ps
 
-f = open('omat.txt', 'w')
-f.write(str(Omat))
-f.close()
-for i in range(100):
-    print(str(i+1)+' '+str(Tmat[i][0]))
-print(Omat[57][0])
-print(Omat[62][1])
-f = open('Mmat.txt', 'w')
-f.write(str(Mmat))
-f.close()
+# f = open('omat.txt', 'w')
+# f.write(str(Omat))
+# f.close()
+# for i in range(100):
+#     print(str(i+1)+' '+str(Tmat[i][0]))
+# print(Omat[57][0])
+# print(Omat[62][1])
+# f = open('Mmat.txt', 'w')
+# f.write(str(Mmat))
+# f.close()
 
 # df = pd.DataFrame(Mmat)
 # filepath = 'Mmat.xlsx'
