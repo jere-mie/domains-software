@@ -58,20 +58,20 @@ print("ihom shape should be Q")
 print(ihom.shape)
 # matrix multiplication step
 
-Wp = []
-for i in range(len(F)):
-    Wp.append(F[i].dot(Omat))
-Wp = np.array(Wp)
-print(len(Wp))
-print(len(Wp[0]))
-print(len(Wp[0][0]))
-Wp = np.swapaxes(Wp,0,1)
-print()
-print(len(Wp))
-print(len(Wp[0]))
-print(len(Wp[0][0]))
-print(Wp.shape)
-for i in range(len(Wp)):
-    for j in range(len(Wp[0])):
-        for k in range(len(Wp[0][0])):
-            Wp[i][j][k] = np.abs(Wp[i][j][k]**2)
+# Wp = []
+# for i in range(len(F)):
+#     Wp.append(F[i].dot(Omat))
+# Wp = np.array(Wp)
+# print(len(Wp))
+# print(len(Wp[0]))
+# print(len(Wp[0][0]))
+# Wp = np.swapaxes(Wp,0,1)
+# print()
+# print(len(Wp))
+# print(len(Wp[0]))
+# print(len(Wp[0][0]))
+# print(Wp.shape)
+# for i in range(len(Wp)):
+#     for j in range(len(Wp[0])):
+#         for k in range(len(Wp[0][0])):
+#             Wp[i][j][k] = np.abs(Wp[i][j][k]**2)
