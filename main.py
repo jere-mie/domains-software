@@ -37,10 +37,25 @@ print(len(F))
 F = np.array(F).reshape(20,500,1900)
 print(len(F))
 
-from omega import Omat, Tmat
+F0 = F[0]
+
+from omega import Omat, Tmat, ad, s
 print(len(Omat))
 print(len(Tmat))
 
+
+H0 = F0.dot(Tmat)
+K0 = F0.dot(Omat)
+
+Ihom = np.zeros(len(H0)*len(H0[0])).reshape(len(H0),len(H0[0]))
+s = np.array(s)
+
+for i in range(len(H0)):
+  for j in range(len(H0[0])):
+    Ihom[i][j] = np.abs((((np.sqrt(np.pi)/2)*H0[i][j]) + ((2*ad*np.sqrt(np.pi))*K0[i][j]))**2)
+ihom = Ihom.dot(s)
+print("ihom shape should be Q")
+print(ihom.shape)
 # matrix multiplication step
 
 Wp = []
