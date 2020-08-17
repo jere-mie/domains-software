@@ -1,6 +1,7 @@
 # imports section
 import numpy as np
 import pandas as pd
+from matplotlib import pyplot as plt
 from scipy.integrate import quad
 from scipy.special import spherical_jn as jn
 import time
@@ -56,6 +57,33 @@ for i in range(len(H0)):
 ihom = Ihom.dot(s)
 print("ihom shape should be Q")
 print(ihom.shape)
+
+fhom = []
+for i in range(len(Ihom)):
+  fhom.append(0)
+  for j in range(len(Ihom[i])):
+    fhom[i]+=(s[j]*np.sqrt(Ihom[i][j]))    
+
+fhom = np.array(fhom)
+print("fhom shape should be Q")
+print(fhom.shape)
+
+df = pd.DataFrame(fhom)
+filepath = 'fhom.xlsx'
+df.to_excel(filepath, index=False)
+
+# plotting stuff
+qline = []
+step = 0.005
+for i in range(500):
+  qline.append(step)
+  step+=0.001
+
+
+plt.plot(qline[100:-1],fhom[100:-1])
+# plt.yscale('log')
+plt.savefig('fhom.png')
+
 # matrix multiplication step
 
 # Wp = []
