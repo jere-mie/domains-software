@@ -4,7 +4,9 @@ import pandas as pd
 rm = 500
 o = 0.25
 ps = 0.0636305
-ad = 0.4
+ad = 0.32
+# ad = 0.43?
+# ad = 0.32?
 
 # declaring vectors
 
