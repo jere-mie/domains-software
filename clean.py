@@ -20,9 +20,14 @@ o = np.longdouble(0.25)
 ps = np.longdouble(0.0636305)
 
 # getting vectors
-q = list(range(5,500))
+q = [10**-1] + list(range(5,510))
 for i in range(len(q)):
     q[i] = np.longdouble(q[i]/1000)
+
+# q = []
+# with open('q.txt', 'r') as f:
+#     for i in f:
+#         q.append(float(i))
 
 r = list(range(100,2000))
 
@@ -119,3 +124,7 @@ plt.plot(q,ihom)
 plt.yscale('log')
 plt.xscale('log')
 plt.savefig('ihom.png')
+
+plt.figure(2)
+plt.plot(q[70:], fhom[70:])
+plt.savefig('fhom2.png')
