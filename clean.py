@@ -4,6 +4,7 @@ import pandas as pd
 from matplotlib import pyplot as plt
 from scipy.integrate import quad
 from scipy.special import spherical_jn as jn
+import time
 
 # some functions
 def integrand(x,l):
@@ -30,6 +31,16 @@ for i in range(len(q)):
 #         q.append(float(i))
 
 r = list(range(100,2000))
+
+# generating F0
+start = time.time()
+F0 = np.zeros(len(q)*len(r)).reshape(len(q),len(r))
+for i in range(len(q)):
+    for j in range(len(r)):
+        F0[i][j] = np.longdouble(integrated(q[i], r[j], r[j]+1, 0))
+print(time.time()-start)
+start = time.time()
+
 
 # dim Z
 z = []
@@ -58,11 +69,6 @@ with open('t.txt', 'r') as f:
     for i in f:
         t.append(float(i))
 
-# generating F0
-F0 = np.zeros(len(q)*len(r)).reshape(len(q),len(r))
-for i in range(len(q)):
-    for j in range(len(r)):
-        F0[i][j] = np.longdouble(integrated(q[i], r[j], r[j]+1, 0))
 
 # generating D, M, O, T
 Dmat = np.full((len(r),len(s)), ps)
@@ -83,6 +89,7 @@ for i in range(len(s)):
             for elem in m:
                 Mmat[j][i] = elem
                 j+=1
+
 Omat = Dmat-Mmat
 Tmat = Mmat - ps
 
@@ -95,7 +102,7 @@ Ihom = np.zeros(len(H0)*len(H0[0])).reshape(len(H0),len(H0[0]))
 s = np.array(s)
 
 sqrpi = np.longdouble(np.sqrt(np.pi))
-sqrpiby2 = np.longdouble(sqrpi/2)
+sqrpiby2 = np.longdouble(sqrpi*2)
 
 for i in range(len(H0)):
   for j in range(len(H0[0])):
@@ -128,3 +135,4 @@ plt.savefig('ihom.png')
 plt.figure(2)
 plt.plot(q[70:], fhom[70:])
 plt.savefig('fhom2.png')
+print(f"{time.time()-start}s")
