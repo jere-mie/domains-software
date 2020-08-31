@@ -21,7 +21,7 @@ o = np.longdouble(0.25)
 ps = np.longdouble(0.0636305)
 
 # getting vectors
-q = list(range(5,510))
+q = list(range(1,501))
 for i in range(len(q)):
     q[i] = np.longdouble(q[i]/1000)
 
@@ -152,3 +152,35 @@ plt.figure(2)
 plt.plot(q[70:], fhom[70:])
 plt.savefig('fhom2.png')
 print(f"{time.time()-start}s")
+
+# matrix multiplication step
+
+Wp = []
+for i in range(len(F)):
+    Wp.append(F[i].dot(Omat))
+Wp = np.array(Wp)
+print(len(Wp))
+print(len(Wp[0]))
+print(len(Wp[0][0]))
+Wp = np.swapaxes(Wp,0,1)
+print()
+print(len(Wp))
+print(len(Wp[0]))
+print(len(Wp[0][0]))
+print(Wp.shape)
+for i in range(len(Wp)):
+    for j in range(len(Wp[0])):
+        for k in range(len(Wp[0][0])):
+            Wp[i][j][k] = np.abs(Wp[i][j][k]**2)
+Wp = np.swapaxes(Wp,0,2)
+Wp = np.swapaxes(Wp,1,2)
+Imon = []
+for i in range(len(Wp)):
+    Imon.append(Wp[i].dot(l))
+Imon = np.array(Imon)
+print(Imon.shape)
+Imon = np.swapaxes(Imon,0,1)
+print(Imon.shape)
+ipoly = Imon.dot(s)
+print(ipoly.shape)
+print(time.time()-start)
