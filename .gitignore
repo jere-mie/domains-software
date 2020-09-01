@@ -6,3 +6,4 @@ __pycache__/
 test/
 venv/
 .vscode/
+secrets.json
