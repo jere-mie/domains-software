@@ -53,7 +53,7 @@ percentage=0
 elems = 0
 
 f = open('data2.txt', 'w')
-
+start = time.time()
 for i in range(numl):
   qlower = ql
   rlower = rl
@@ -61,12 +61,13 @@ for i in range(numl):
     rlower = rl
     for k in range(numr):
       elems+=1
+      # anumber = integrated(qlower,rlower,rlower+rstep,llower)
       f.write(str(integrated(qlower,rlower,rlower+rstep,llower))+' ')
       rlower+=rstep
     qlower+=qstep
   llower+=lstep
   print(f"{i+1} of {numl}")
-
+print(time.time()-start)
 
 print(f'{elems} elements')
 f.close()
