@@ -2,4 +2,18 @@
 {% block content %}
 <h1 class="thin center">New Dataset</h1>
 <h4 class="thin center">Input Data Below</h4>
+<br><br><br>
+<div class="container">
+    <form method="POST" enctype="multipart/form-data">
+        {{ form.csrf_token }}
+        <div class="form-group">
+            {{ form.image.label }}
+            {{ form.image(class="form-control-file") }}
+        </div>
+        <br>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-primary") }}
+        </div>
+    </form>
+</div>
 {% endblock %}
