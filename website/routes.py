@@ -3,6 +3,7 @@ from website import app, db
 from website.forms import UploadForm
 # from flask_uploads import configure_uploads, IMAGES, UploadSet
 import os
+import numpy as np
 
 # from website.models import Project, User
 # from flask_login import login_user, current_user, logout_user, login_required
@@ -17,11 +18,24 @@ def home():
 def new():
     form = UploadForm()
     if form.validate_on_submit():
-        if not os.path.exists("website/uploads/data"):
-            os.mkdir("website/uploads/data")
-
-        form.image.data.save("website/uploads/data/"+form.image.data.filename)
-        print(form.image.data)
+        form.z.data.save("website/uploads/z.txt")
+        form.d.data.save("website/uploads/d.txt")
+        form.m.data.save("website/uploads/m.txt")
+        form.s.data.save("website/uploads/s.txt")
+        form.t.data.save("website/uploads/t.txt")
+        form.w.data.save("website/uploads/w.txt")
+        # form.z.data.save("website/uploads/"+form.z.data.filename)
+        # form.d.data.save("website/uploads/"+form.d.data.filename)
+        # form.m.data.save("website/uploads/"+form.m.data.filename)
+        # form.s.data.save("website/uploads/"+form.s.data.filename)
+        # form.t.data.save("website/uploads/"+form.t.data.filename)
+        # form.w.data.save("website/uploads/"+form.w.data.filename)
+        frm = np.longdouble(form.rm.data)
+        fo = np.longdouble(form.o.data)
+        fps = np.longdouble(form.ps.data)
+        fad = np.longdouble(form.ad.data)
+        
+        print("success")
     #     project = Project(author=form.author.data, title=form.title.data, content=form.content.data)
     #     db.session.add(project)
     #     db.session.commit()

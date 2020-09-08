@@ -7,8 +7,53 @@
     <form method="POST" enctype="multipart/form-data">
         {{ form.csrf_token }}
         <div class="form-group">
-            {{ form.image.label }}
-            {{ form.image(class="form-control-file") }}
+            {{ form.z.label(class="form-control-label") }}
+            {{ form.z(class="form-control-file") }}
+        </div>
+        <br>
+        <div class="form-group">
+            {{ form.d.label(class="form-control-label") }}
+            {{ form.d(class="form-control-file") }}
+        </div>
+        <br>
+        <div class="form-group">
+            {{ form.m.label(class="form-control-label") }}
+            {{ form.m(class="form-control-file") }}
+        </div>
+        <br>
+        <div class="form-group">
+            {{ form.s.label(class="form-control-label") }}
+            {{ form.s(class="form-control-file") }}
+        </div>
+        <br>
+        <div class="form-group">
+            {{ form.t.label(class="form-control-label") }}
+            {{ form.t(class="form-control-file") }}
+        </div>
+        <br>
+        <div class="form-group">
+            {{ form.w.label(class="form-control-label") }}
+            {{ form.w(class="form-control-file") }}
+        </div>
+        <br>
+        <div class="form-group">
+            {{ form.rm.label(class="form-control-label") }}
+            {{ form.rm(class="form-control-lg") }}
+        </div>
+        <br>
+        <div class="form-group">
+            {{ form.o.label(class="form-control-label") }}
+            {{ form.o(class="form-control-lg") }}
+        </div>
+        <br>
+        <div class="form-group">
+            {{ form.ps.label(class="form-control-label") }}
+            {{ form.ps(class="form-control-lg") }}
+        </div>
+        <br>
+        <div class="form-group">
+            {{ form.ad.label(class="form-control-label") }}
+            {{ form.ad(class="form-control-lg") }}
         </div>
         <br>
         <div class="form-group">

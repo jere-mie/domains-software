@@ -10,7 +10,8 @@ with open('secrets.json') as f:
 app = Flask(__name__)
 app.config['SECRET_KEY'] = data['secret_key']
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+app.config['UPLOAD_EXTENSIONS'] = ['.txt']
 
 db = SQLAlchemy(app)
 # login_manager = LoginManager(app)
