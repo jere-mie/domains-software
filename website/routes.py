@@ -1,39 +1,86 @@
 from flask import render_template, url_for, flash, redirect, request
 from website import app, db
-from website.forms import UploadForm
+from website.forms import UploadForm, Login, Register
 # from flask_uploads import configure_uploads, IMAGES, UploadSet
 import os
 import numpy as np
-
-# from website.models import Project, User
-# from flask_login import login_user, current_user, logout_user, login_required
+from website.models import User, Dataset
+from flask_login import login_user, current_user, logout_user, login_required
+import bcrypt
 
 @app.route('/', methods=['GET'])
 @app.route('/home', methods=['GET'])
 def home():
     return render_template('home.html')
 
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if current_user.is_authenticated:
+        flash('You are already authenticated','success')
+        return redirect(url_for('home'))
+    form = Register()
+    if form.validate_on_submit():
+        hashed = bcrypt.hashpw(form.password.data, bcrypt.gensalt())
+        user = User(username=form.username.data, password=hashed)
+        db.session.add(user)
+        db.session.commit()
+        if not os.path.exists(f"website/static/uploads/{form.username.data}"):
+            os.mkdir(f"website/static/uploads/{form.username.data}")
+        flash(f'Created account for {form.username.data}. You may now log in.', 'success')
+        return redirect(url_for('login'))
+
+    return render_template("register.html", form=form)
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if current_user.is_authenticated:
+        flash('You are already authenticated','success')
+        return redirect(url_for('home'))
+    form = Login()
+    if form.validate_on_submit():
+        user = User.query.filter_by(username=form.username.data).first()
+        if user and bcrypt.checkpw(form.password.data, user.password):
+            login_user(user, remember=form.rememberMe.data)
+            next_page = request.args.get('next')
+            return redirect(next_page) if next_page else redirect(url_for('home'))
+        else:
+            flash('Error Logging In', 'danger')
+    return render_template("login.html", form=form)
+
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('home'))
+
+
 @app.route('/new', methods=['GET', 'POST'])
 # @login_required
 def new():
     form = UploadForm()
     if form.validate_on_submit():
-        form.z.data.save("website/uploads/z.txt")
-        form.d.data.save("website/uploads/d.txt")
-        form.m.data.save("website/uploads/m.txt")
-        form.s.data.save("website/uploads/s.txt")
-        form.t.data.save("website/uploads/t.txt")
-        form.w.data.save("website/uploads/w.txt")
+        dataset = Dataset(title=form.title.data, author=current_user, rm=form.frm.data, o=form.fo.data, ps=form.fps.data, ad=form.fad.data)
+        uname = current_user.username
+        tit = form.title.data
+        if not os.path.exists(f"website/static/uploads/{uname}/{tit}"):
+            os.mkdir(f"website/static/uploads/{uname}/{tit}")
+        form.z.data.save(f"website/static/uploads/{uname}/{tit}/z.txt")
+        form.d.data.save(f"website/static/uploads/{uname}/{tit}/d.txt")
+        form.m.data.save(f"website/static/uploads/{uname}/{tit}/m.txt")
+        form.s.data.save(f"website/static/uploads/{uname}/{tit}/s.txt")
+        form.t.data.save(f"website/static/uploads/{uname}/{tit}/t.txt")
+        form.w.data.save(f"website/static/uploads/{uname}/{tit}/w.txt")
         # form.z.data.save("website/uploads/"+form.z.data.filename)
         # form.d.data.save("website/uploads/"+form.d.data.filename)
         # form.m.data.save("website/uploads/"+form.m.data.filename)
         # form.s.data.save("website/uploads/"+form.s.data.filename)
         # form.t.data.save("website/uploads/"+form.t.data.filename)
         # form.w.data.save("website/uploads/"+form.w.data.filename)
-        frm = np.longdouble(form.rm.data)
-        fo = np.longdouble(form.o.data)
-        fps = np.longdouble(form.ps.data)
-        fad = np.longdouble(form.ad.data)
+
+        # frm = np.longdouble(form.rm.data)
+        # fo = np.longdouble(form.o.data)
+        # fps = np.longdouble(form.ps.data)
+        # fad = np.longdouble(form.ad.data)
         
         print("success")
     #     project = Project(author=form.author.data, title=form.title.data, content=form.content.data)

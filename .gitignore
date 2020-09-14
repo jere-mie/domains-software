@@ -9,3 +9,4 @@ venv/
 secrets.json
 site.db
 website/uploads/
+website/static/uploads/*
