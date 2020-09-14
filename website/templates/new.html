@@ -7,6 +7,11 @@
     <form method="POST" enctype="multipart/form-data">
         {{ form.csrf_token }}
         <div class="form-group">
+            {{ form.title.label(class="form-control-label") }}
+            {{ form.title(class="form-control-lg") }}
+        </div>
+        <br>
+        <div class="form-group">
             {{ form.z.label(class="form-control-label") }}
             {{ form.z(class="form-control-file") }}
         </div>

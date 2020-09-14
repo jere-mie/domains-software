@@ -21,7 +21,7 @@ def register():
         return redirect(url_for('home'))
     form = Register()
     if form.validate_on_submit():
-        hashed = bcrypt.hashpw(form.password.data, bcrypt.gensalt())
+        hashed = bcrypt.hashpw(form.password.data.encode('utf-8'), bcrypt.gensalt())
         user = User(username=form.username.data, password=hashed)
         db.session.add(user)
         db.session.commit()
@@ -40,7 +40,7 @@ def login():
     form = Login()
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
-        if user and bcrypt.checkpw(form.password.data, user.password):
+        if user and bcrypt.checkpw(form.password.data.encode('utf-8'), user.password):
             login_user(user, remember=form.rememberMe.data)
             next_page = request.args.get('next')
             return redirect(next_page) if next_page else redirect(url_for('home'))
@@ -55,7 +55,7 @@ def logout():
 
 
 @app.route('/new', methods=['GET', 'POST'])
-# @login_required
+@login_required
 def new():
     form = UploadForm()
     if form.validate_on_submit():

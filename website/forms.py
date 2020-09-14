@@ -4,7 +4,7 @@ from wtforms import StringField, PasswordField, SubmitField, BooleanField, FileF
 from website.models import User, Dataset
 
 class Register(FlaskForm):
-    username = StringField('Email', validators=[DataRequired(), Length(min=5, max=20)])    
+    username = StringField('Email', validators=[DataRequired(), Length(min=5, max=60)])    
     password = PasswordField('Password', validators=[DataRequired(), Length(min=5, max=20)])
     confirm = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Register')
@@ -23,14 +23,14 @@ class Login(FlaskForm):
 
 
 class UploadForm(FlaskForm):
-    title = StringField("Mean vesicle size (Rm)", validators=[DataRequired(), Length(min=5, max=20)])
+    title = StringField("Title", validators=[DataRequired(), Length(min=5, max=20)])
     z = FileField("Distance from flat bilayer center (z vector)", validators=[DataRequired()])
     d = FileField("Domain scattering length density profile (d vector)", validators=[DataRequired()])
     m = FileField("Matrix (surround) scattering length density profile (m vector)", validators=[DataRequired()])
     s = FileField("Schulz distribution probabilities (s vector)", validators=[DataRequired()])
     t = FileField("Schulz distribution vesicle radii (t vector)", validators=[DataRequired()])
     w = FileField("Angular expansion coefficients (w~ vector, for l)", validators=[DataRequired()])
-    rm = StringField("Mean vesicle size (Rm)", validators=[DataRequired()], Length(min=1, max=30))
+    rm = StringField("Mean vesicle size (Rm)", validators=[DataRequired(), Length(min=1, max=30)])
     o = StringField("Relative polydispersity (o)", validators=[DataRequired(), Length(min=1, max=30)])
     ps = StringField("Solvent scattering length density (ps)", validators=[DataRequired(), Length(min=1, max=30)])
     ad = StringField("Domain area fraction (ad)", validators=[DataRequired(), Length(min=1, max=30)])
