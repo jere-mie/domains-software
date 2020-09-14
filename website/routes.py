@@ -59,7 +59,7 @@ def logout():
 def new():
     form = UploadForm()
     if form.validate_on_submit():
-        dataset = Dataset(title=form.title.data, author=current_user, rm=form.rm.data, o=form.o.data, ps=form.ps.data, ad=form.ad.data)
+        dataset = Dataset(title=form.title.data, author=current_user, rm=float(form.rm.data), o=float(form.o.data), ps=float(form.ps.data), ad=float(form.ad.data))
         uname = current_user.username
         tit = form.title.data
         if not os.path.exists(f"website/static/uploads/{uname}/{tit}"):
