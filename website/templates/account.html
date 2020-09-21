@@ -8,6 +8,8 @@
 
     {% for dataset in datasets %}
         <h2 class="thin">{{ dataset.title }}</h2>
-        <a href="{{ url_for('dataset', ds_id=dataset.id) }}" class="btn btn-primary"></a>
+        <a href="{{ url_for('dataset', ds_id=dataset.id) }}" class="btn btn-lg btn-primary">View</a>
+        <hr width="80%">
+        <br>
     {% endfor %}
 {% endblock %}
