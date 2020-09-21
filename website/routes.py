@@ -3,7 +3,6 @@ from website import app, db
 from website.forms import UploadForm, Login, Register
 from website.domains import generate
 from website.fmat import F
-# from flask_uploads import configure_uploads, IMAGES, UploadSet
 import os
 import numpy as np
 from website.models import User, Dataset

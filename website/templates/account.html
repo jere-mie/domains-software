@@ -3,13 +3,19 @@
 {% block content %}
     <div class="container">
         <h1 class="thin center" style="font-size:5rem">My Datasets</h1><br>
-        <p class="center">View all your datasets here</p>
+        <h5 class="center">View all your datasets here</h5><br><br>
     </div>
-
+    <div class="row">
     {% for dataset in datasets %}
-        <h2 class="thin">{{ dataset.title }}</h2>
-        <a href="{{ url_for('dataset', ds_id=dataset.id) }}" class="btn btn-lg btn-primary">View</a>
-        <hr width="80%">
-        <br>
+        <div class="col-md-6 center">
+            <div class="pushed light">
+                <h2 class="thin">{{ dataset.title }}</h2>
+                <a href="{{ url_for('dataset', ds_id=dataset.id) }}" class="btn btn-lg btn-primary">View</a>
+                <a href="{{ url_for('compute', ds_id=dataset.id) }}" class="btn btn-lg btn-success">Compute</a>
+                <hr width="80%">
+                <br>
+            </div>
+        </div>
     {% endfor %}
+    </div>
 {% endblock %}

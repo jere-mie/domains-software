@@ -1,7 +1,8 @@
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from matplotlib import pyplot as plt
-# this is where I will be putting the necessary domains functions as found in the clean.py, findz.py, etc.
 
 def generate(F, r, q, path, rm, o, ps, ad):
     F0 = F[0]
