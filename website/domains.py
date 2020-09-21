@@ -1,10 +1,9 @@
 import numpy as np
-from matplotlib import pyplot as plt
 import pandas as pd
-import time
+from matplotlib import pyplot as plt
 # this is where I will be putting the necessary domains functions as found in the clean.py, findz.py, etc.
 
-def generate(F, r, path, rm, o, ps, ad):
+def generate(F, r, q, path, rm, o, ps, ad):
     F0 = F[0]
     # open txt files from path
     z = []
@@ -67,21 +66,21 @@ def generate(F, r, path, rm, o, ps, ad):
     sqrpiby2 = np.longdouble(sqrpi*2)
 
     for i in range(len(H0)):
-    for j in range(len(H0[0])):
-        p1 = np.longdouble(sqrpiby2*H0[i][j])
-        p2 = 2*ad*sqrpi
-        p2*=K0[i][j]
-        psum = p1+p2
-        Ihom[i][j] = np.longdouble(np.power(psum,2))
+        for j in range(len(H0[0])):
+            p1 = np.longdouble(sqrpiby2*H0[i][j])
+            p2 = 2*ad*sqrpi
+            p2*=K0[i][j]
+            psum = p1+p2
+            Ihom[i][j] = np.longdouble(np.power(psum,2))
 
     # generating ihom and fhom
     ihom = Ihom.dot(s)
 
     fhom = np.zeros(len(ihom))
     for i in range(len(Ihom)):
-    fhom[i] = np.longdouble(0)
-    for j in range(len(Ihom[i])):
-        fhom[i]+=(s[j]*np.sqrt(Ihom[i][j]))    
+        fhom[i] = np.longdouble(0)
+        for j in range(len(Ihom[i])):
+            fhom[i]+=(s[j]*np.sqrt(Ihom[i][j]))    
 
     # plotting ihom and fhom
     plt.figure(0)
@@ -97,5 +96,4 @@ def generate(F, r, path, rm, o, ps, ad):
     plt.figure(2)
     plt.plot(q[70:], fhom[70:])
     plt.savefig(f'{path}/fhom2.png')
-    print(f"{time.time()-start}s")
     print("hi")

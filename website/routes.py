@@ -13,6 +13,7 @@ import bcrypt
 @app.route('/', methods=['GET'])
 @app.route('/home', methods=['GET'])
 def home():
+    print(len(F))
     return render_template('home.html')
 
 
@@ -118,5 +119,8 @@ def compute(ds_id):
         flash('You are not this dataset\'s owner', 'danger')
         return redirect(url_for('home'))
     r = list(range(100,2000))
-    generate(F, r, f'website/static/uploads/{uname}/{tit}', dataset.rm, dataset.o, dataset.ps, dataset.ad)
+    q = list(range(1, 501))
+    for i in range(len(q)):
+        q[i]/=1000
+    generate(F, r, q, f'website/static/uploads/{dataset.author.username}/{dataset.title}', dataset.rm, dataset.o, dataset.ps, dataset.ad)
     return render_template('dataset.html', dataset=dataset)

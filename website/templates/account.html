@@ -5,4 +5,9 @@
         <h1 class="thin center" style="font-size:5rem">My Datasets</h1><br>
         <p class="center">View all your datasets here</p>
     </div>
+
+    {% for dataset in datasets %}
+        <h2 class="thin">{{ dataset.title }}</h2>
+        <a href="{{ url_for('dataset', ds_id=dataset.id) }}" class="btn btn-primary"></a>
+    {% endfor %}
 {% endblock %}
