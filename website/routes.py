@@ -1,6 +1,8 @@
 from flask import render_template, url_for, flash, redirect, request
 from website import app, db
 from website.forms import UploadForm, Login, Register
+from website.domains import generate
+from website.fmat import F
 # from flask_uploads import configure_uploads, IMAGES, UploadSet
 import os
 import numpy as np
@@ -60,6 +62,8 @@ def new():
     form = UploadForm()
     if form.validate_on_submit():
         dataset = Dataset(title=form.title.data, author=current_user, rm=float(form.rm.data), o=float(form.o.data), ps=float(form.ps.data), ad=float(form.ad.data))
+        db.session.add(dataset)
+        db.session.commit()
         uname = current_user.username
         tit = form.title.data
         if not os.path.exists(f"website/static/uploads/{uname}/{tit}"):
@@ -90,3 +94,29 @@ def new():
     #     return redirect(url_for('home'))
     # return render_template('new.html', form=form, legend='New Project')
     return render_template('new.html', form=form)
+
+@app.route('/account', methods=['GET', 'POST'])
+@login_required
+def account():
+    datasets = Dataset.query.filter_by(author=current_user).all()
+    return render_template('account.html', datasets=datasets)
+
+@app.route('/<ds_id>', methods=['GET', 'POST'])
+@login_required
+def dataset(ds_id):
+    dataset = Dataset.query.get_or_404(ds_id)
+    if dataset.author != current_user:
+        flash('You are not this dataset\'s owner', 'danger')
+        return redirect(url_for('home'))
+    return render_template('dataset.html', dataset=dataset)
+
+@app.route('/<ds_id>/compute', methods=['GET', 'POST'])
+@login_required
+def compute(ds_id):
+    dataset = Dataset.query.get_or_404(ds_id)
+    if dataset.author != current_user:
+        flash('You are not this dataset\'s owner', 'danger')
+        return redirect(url_for('home'))
+    r = list(range(100,2000))
+    generate(F, r, f'website/static/uploads/{uname}/{tit}', dataset.rm, dataset.o, dataset.ps, dataset.ad)
+    return render_template('dataset.html', dataset=dataset)

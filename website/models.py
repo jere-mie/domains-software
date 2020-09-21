@@ -22,4 +22,3 @@ class Dataset(db.Model):
     o = db.Column(db.Float, nullable=False)
     ps = db.Column(db.Float, nullable=False)
     ad = db.Column(db.Float, nullable=False)
-        
