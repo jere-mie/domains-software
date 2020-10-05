@@ -7,9 +7,20 @@
         
         <p class="center">
             <a href="{{ url_for('compute', ds_id=dataset.id) }}" class="btn btn-success">Compute</a>
-            <img src="{{ url_for('static', filename='uploads/'+dataset.author.username+'/'+dataset.title+'/ihom.png') }}" alt="" width="60%">
-            <img src="{{ url_for('static', filename='uploads/'+dataset.author.username+'/'+dataset.title+'/fhom.png') }}" alt="" width="60%">
-            <img src="{{ url_for('static', filename='uploads/'+dataset.author.username+'/'+dataset.title+'/fhom2.png') }}" alt="" width="60%">    
         </p>
+        <div class="row">
+            <div class="col-md-4">
+                <h4 class="thin center">Homogeneous Intensity, or I(q), Curve</h4>
+                <img src="{{ url_for('static', filename='uploads/'+dataset.author.username+'/'+dataset.title+'/ihom.png') }}" alt="" width="100%">    
+            </div>
+            <div class="col-md-4">
+                <h4 class="thin center">Homogeneous Form Factor (Untrimmed)</h4>
+                <img src="{{ url_for('static', filename='uploads/'+dataset.author.username+'/'+dataset.title+'/fhom.png') }}" alt="" width="100%">
+            </div>
+            <div class="col-md-4">
+                <h4 class="thin center">Homogeneous Form Factor (Trimmed)</h4>
+                <img src="{{ url_for('static', filename='uploads/'+dataset.author.username+'/'+dataset.title+'/fhom2.png') }}" alt="" width="100%">
+            </div>
+        </div>
     </div>
 {% endblock %}

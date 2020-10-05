@@ -123,7 +123,7 @@ def compute(ds_id):
     for i in range(len(q)):
         q[i]/=1000
     generate(F, r, q, f'website/static/uploads/{dataset.author.username}/{dataset.title}', dataset.rm, dataset.o, dataset.ps, dataset.ad)
-    return render_template('dataset.html', dataset=dataset)
+    return redirect(url_for('dataset', ds_id=ds_id))
 
 @app.route('/<ds_id>/delete', methods=['GET'])
 @login_required

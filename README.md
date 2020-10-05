@@ -9,14 +9,16 @@ The treatment and analysis of small angle scattering (SAS) data is always a tech
 * Uploading new datasets via .txt files and input fields
 * Viewing all of your datasets by name
 * Computing homogeneous I(q) curves
+* Deleting datasets
 
 ### Future Features
 * Computing heterogeneous I(q) curves
 * Editing datasets
-* Deleting datasets
 
 ### Current Bugs
 * Currently sometimes when loading the site for the first time it loads for a long time. This is most likely due to objects not being cached properly on the server. A remedy is hopefully going to come out soon.
+
+### Fixed Bugs
 * I(q) curves show other curves/colours. This is due to the need to clear plots in matplotlib. The fix is trivial and should be out in the next release.
 
 ### Tech Stack
