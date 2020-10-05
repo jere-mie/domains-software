@@ -8,6 +8,7 @@ import numpy as np
 from website.models import User, Dataset
 from flask_login import login_user, current_user, logout_user, login_required
 import bcrypt
+import shutil
 
 @app.route('/', methods=['GET'])
 @app.route('/home', methods=['GET'])
@@ -123,3 +124,21 @@ def compute(ds_id):
         q[i]/=1000
     generate(F, r, q, f'website/static/uploads/{dataset.author.username}/{dataset.title}', dataset.rm, dataset.o, dataset.ps, dataset.ad)
     return render_template('dataset.html', dataset=dataset)
+
+@app.route('/<ds_id>/delete', methods=['GET'])
+@login_required
+def delete(ds_id):
+    dataset = Dataset.query.get_or_404(ds_id)
+    if dataset.author != current_user:
+        flash('You are not this dataset\'s owner', 'danger')
+        return redirect(url_for('home'))
+    try:
+        shutil.rmtree(f'website/static/uploads/{dataset.author.username}/{dataset.title}')
+    except:
+        print("there was an error deleting the directory. That's all we know")
+    db.session.delete(dataset)
+    db.session.commit()
+    flash('Successfully deleted', 'success')
+    return(redirect(url_for('account')))
+
+    

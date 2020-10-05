@@ -98,3 +98,4 @@ def generate(F, r, q, path, rm, o, ps, ad):
     plt.plot(q[70:], fhom[70:])
     plt.savefig(f'{path}/fhom2.png')
     print("hi")
+    plt.close('all')
