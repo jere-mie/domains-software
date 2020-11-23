@@ -40,8 +40,10 @@ def alpha(n, ad):
 
 a = []
 b = []
-for i in range(1,11):
-    a.append(y(i, alpha(1, 0.1), 0.1))
+f = open("w.txt", "w")
+for i in range(0,20):
+    a.append(y(i, alpha(1, 0.4), 0.4))
+    f.write(str(y(i, alpha(1, 0.4), 0.4))+'\n')
     b.append(i)
 plt.plot(b, a)
 print(a)
