@@ -2,6 +2,15 @@ from scipy.integrate import quad
 from scipy.special import spherical_jn as jn
 import numpy as np
 import time
+
+"""
+November 30 Parameters For Reference:
+R: 100-2000 (1900 elements)
+q: 0.001-0.500 (500 elements)
+l: 0-240 (250 elements)
+
+"""
+
 def integrand(x,l):
   return jn(l,x) * x**2
 
@@ -52,7 +61,7 @@ ll = llower
 percentage=0
 elems = 0
 
-f = open('data2.txt', 'w')
+f = open('databig.txt', 'w')
 start = time.time()
 for i in range(numl):
   qlower = ql

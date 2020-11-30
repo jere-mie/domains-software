@@ -40,7 +40,7 @@ r = list(range(100,2000))
 #         F0[i][j] = np.longdouble(integrated(q[i], r[j], r[j]+1, 0))
 # print(time.time()-start)
 
-f = open('data2.txt', 'r')
+f = open('databig.txt', 'r')
 start = time.time()
 F = f.read()
 f.close()
