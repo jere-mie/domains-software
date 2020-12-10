@@ -7,7 +7,8 @@ import time
 November 30 Parameters For Reference:
 R: 100-2000 (1900 elements)
 q: 0.001-0.500 (500 elements)
-l: 0-240 (250 elements)
+l: 0-100 (100 elements)
+# l: 0-250 (250 elements)
 
 """
 
@@ -61,7 +62,7 @@ ll = llower
 percentage=0
 elems = 0
 
-f = open('databig.txt', 'w')
+f = open('data100.txt', 'w')
 start = time.time()
 for i in range(numl):
   qlower = ql

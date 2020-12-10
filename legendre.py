@@ -41,10 +41,12 @@ def alpha(n, ad):
 a = []
 b = []
 f = open("w.txt", "w")
-for i in range(0,20):
+for i in range(0,100):
+    f.write(str(e26(i, alpha(1, 0.4))**2)+'\n')
     a.append(y(i, alpha(1, 0.4), 0.4))
-    f.write(str(y(i, alpha(1, 0.4), 0.4))+'\n')
+    # f.write(str(y(i, alpha(1, 0.4), 0.4))+'\n')
     b.append(i)
+f.close()
 plt.plot(b, a)
 print(a)
 plt.savefig('lg.png')

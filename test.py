@@ -40,7 +40,7 @@ r = list(range(100,2000))
 #         F0[i][j] = np.longdouble(integrated(q[i], r[j], r[j]+1, 0))
 # print(time.time()-start)
 
-f = open('databig.txt', 'r')
+f = open('data100.txt', 'r')
 start = time.time()
 F = f.read()
 f.close()
@@ -49,7 +49,7 @@ F = F.split(' ')
 F = F[0:len(F)-1]
 for i in range(len(F)):
     F[i] = float(F[i])
-F = np.array(F).reshape(20,500,1900)
+F = np.array(F).reshape(100,500,1900)
 
 F0 = F[0]
 
