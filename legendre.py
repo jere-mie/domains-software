@@ -42,13 +42,13 @@ a = []
 b = []
 element = 0
 ealpha = alpha(1, 0.32)
-f = open("w.txt", "w")
-for i in range(0,100):
-    if i==0:
-        f.write(str(0)+'\n')
-        continue
+f = open("w2.txt", "w")
+for i in range(1,100):
+    # if i==0:
+    #     f.write(str(0)+'\n')
+    #     continue
     element = e26(i, ealpha)
-    element = np.abs(element**2)
+    element = np.abs(element)**2
     f.write(str(element)+'\n')
     # f.write(str(e26(i, alpha(1, 0.32))**2)+'\n')
     # a.append(y(i, alpha(1, 0.4), 0.4))

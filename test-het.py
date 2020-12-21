@@ -59,8 +59,8 @@ F = F.split(' ')
 F = F[0:len(F)-1]
 for i in range(len(F)):
     F[i] = float(F[i])
+# F = F[1:]
 F = np.array(F).reshape(len(w),len(q),len(r))
-
 print('done with F')
 
 # generating D, M, O, T
