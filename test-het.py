@@ -4,10 +4,9 @@ from matplotlib import pyplot as plt
 import time
 
 # getting constants
-ad = np.longdouble(0.32)
-rm = np.longdouble(500)
-o = np.longdouble(0.25)
-ps = np.longdouble(0.0636305)
+# rm = np.longdouble(300)
+# o = np.longdouble(0.25)
+ps = np.longdouble(0.181)
 
 # getting vectors
 q = list(range(1,501))
@@ -17,35 +16,35 @@ for i in range(len(q)):
 r = list(range(100,2000))
 
 w = []
-with open('w.txt', 'r') as f:
+with open('w2.txt', 'r') as f:
     for i in f:
         w.append(float(i))
 
 
 # dim Z
 z = []
-with open('data/z.txt', 'r') as f:
+with open('data2/z.txt', 'r') as f:
     for i in f:
         z.append(float(i))
 
 d = []
-with open('data/d.txt', 'r') as f:
+with open('data2/d.txt', 'r') as f:
     for i in f:
         d.append(float(i))
 
 m = []
-with open('data/m.txt', 'r') as f:
+with open('data2/m.txt', 'r') as f:
     for i in f:
         m.append(float(i))
 
 # dim S
 s = []
-with open('data/s.txt', 'r') as f:
+with open('data2/s.txt', 'r') as f:
     for i in f:
         s.append(float(i))
 
 t = []
-with open('data/t.txt', 'r') as f:
+with open('data2/t.txt', 'r') as f:
     for i in f:
         t.append(float(i))
 
@@ -59,8 +58,8 @@ F = F.split(' ')
 F = F[0:len(F)-1]
 for i in range(len(F)):
     F[i] = float(F[i])
-# F = F[1:]
-F = np.array(F).reshape(len(w),len(q),len(r))
+F = np.array(F).reshape(len(w)+1,len(q),len(r))
+F = F[1:]
 print('done with F')
 
 # generating D, M, O, T

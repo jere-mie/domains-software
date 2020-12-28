@@ -41,20 +41,19 @@ def alpha(n, ad):
 a = []
 b = []
 element = 0
-ealpha = alpha(1, 0.32)
+ealpha = alpha(1, 0.5)
 f = open("w2.txt", "w")
 for i in range(1,100):
-    # if i==0:
-    #     f.write(str(0)+'\n')
-    #     continue
     element = e26(i, ealpha)
     element = np.abs(element)**2
     f.write(str(element)+'\n')
-    # f.write(str(e26(i, alpha(1, 0.32))**2)+'\n')
-    # a.append(y(i, alpha(1, 0.4), 0.4))
-    # f.write(str(y(i, alpha(1, 0.4), 0.4))+'\n')
-    # b.append(i)
 f.close()
 # plt.plot(b, a)
 # print(a)
-plt.savefig('lg.png')
+# plt.savefig('lg.png')
+
+
+# f.write(str(e26(i, alpha(1, 0.32))**2)+'\n')
+# a.append(y(i, alpha(1, 0.4), 0.4))
+# f.write(str(y(i, alpha(1, 0.4), 0.4))+'\n')
+# b.append(i)
