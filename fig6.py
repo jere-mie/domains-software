@@ -8,6 +8,19 @@ info for next time:
     so 2 domains is 0.1)
 """
 
+
+"""
+# code for angle between
+import numpy as np
+# from numpy import (array, dot, arccos, clip)
+# from numpy.linalg import norm
+
+u = np.array([1,2,3,4])
+v = np.array([1,2,3,4])
+c = np.dot(u,v)/np.linalg.norm(u)/np.linalg.norm(v) # -> cosine of the angle
+angle = np.arccos(np.clip(c, -1, 1)) # if you really want the angle
+"""
+
 import numpy as np
 from matplotlib import pyplot as plt
 from scipy.special import eval_legendre as lg
