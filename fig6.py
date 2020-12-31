@@ -31,8 +31,16 @@ def e26(l, ad):
     c = lg(int(l+1), np.cos(ad))
     return a*(b-c)
 
+# n is number of domains
+# ad is TOTAL domain area fraction
 def alpha(n, ad):
     return (np.arccos(1-((2.0*ad)/n)))
+
+# angle between two vectors, a and b
+def angle(a, b):
+    c = np.dot(a,b)/np.linalg.norm(a)/np.linalg.norm(b)
+    return np.arccos(np.clip(c, -1, 1))
+
 
 l = []
 yaxis = []
