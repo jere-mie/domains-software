@@ -130,3 +130,7 @@ plt.plot(q, ipoly)
 plt.yscale('log')
 plt.xscale('log')
 plt.savefig('imon.png')
+
+with open('test-het.txt', 'w') as file:
+    for i in ipoly:
+        file.write(f'{i}\n')

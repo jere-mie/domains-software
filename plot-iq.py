@@ -7,7 +7,7 @@ q = []
 
 both = []
 
-with open("fig4/ad05.dat", 'r') as f:
+with open("fig4/ad001.dat", 'r') as f:
     for i in f:
         both.append(re.findall("[\d.e-]+", i))
         I.append(float(both[-1][0]))

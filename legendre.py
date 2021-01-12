@@ -41,7 +41,7 @@ def alpha(n, ad):
 a = []
 b = []
 element = 0
-ealpha = alpha(1, 0.5)
+ealpha = alpha(1, 0.2)
 f = open("w2.txt", "w")
 for i in range(1,100):
     element = e26(i, ealpha)
