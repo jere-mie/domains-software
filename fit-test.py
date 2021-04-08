@@ -1,6 +1,7 @@
 import numpy as np
-
-
+# import scipy as sp
+from scipy.stats import chisquare
+import time
 # modified binary search where we only care about matching the element most close to 'x' within a threshhold
 def f_bs(arr, x):
     low = 0
@@ -41,4 +42,24 @@ if __name__ == "__main__":
     # x2 = 0.3, 0.6, 0.9, ...
     # y2 = 0.9, 1.8, 2.7, ... 
 
-    print(change_x(x1, y1, x2))
+    # print(change_x(x1, y1, x2))
+    # res = change_x(x1, y1, x2) # fitting the function to desired x range
+
+    # the lower, the better the fit
+    # print(chisquare(y2, f_exp=res)[0]) 
+    # print(chisquare([1,2,3,4,5,6], f_exp=[6,5,4,3,2,1])[0])
+
+    start = time.time()
+    a1 = [3,6,9,12,15,18,21]
+    a2 = [1,2,3,4,5,6,7]
+
+    min = 9999
+    best = 0
+    for i in range(1,4):
+        res = [j*i for j in a2]
+        goodness = chisquare(a1, f_exp=res)[0]
+        if goodness < min:
+            min = goodness
+            best = i
+    print(best)
+    print(time.time()-start)
